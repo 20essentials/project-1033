@@ -16,11 +16,7 @@ img {
 }
 
 :root {
-  --gradient-btn: linear-gradient(
-    to bottom,
-    #00f,
-    black
-  );
+  --gradient-btn: linear-gradient(to bottom, #ff0, black);
 }
 
 button {
@@ -66,6 +62,7 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
   background: var(--sb-thumb-color);
+  border-radius: 20px;
 }
 
 @supports not selector(::-webkit-scrollbar) {

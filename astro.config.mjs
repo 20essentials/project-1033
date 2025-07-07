@@ -7,8 +7,8 @@ export default defineConfig({
     assets: 'static'
   },
   //Deploy normal project
-  base: '/project-1032/',
-  site: 'https://20essentials.github.io/project-1032/'
+  base: '/project-1033/',
+  site: 'https://20essentials.github.io/project-1033/'
 
   //Localhost
   // site: 'http://localhost:4321/'
