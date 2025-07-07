@@ -1,0 +1,93 @@
+---
+import { baseUrl } from '@/utils/functions';
+---
+
+<section style={{ display: 'flex' }}>
+  {
+    [...new Array(3)].map((_, colIndex) => {
+      const start = colIndex * 20;
+      return (
+        <section class='row'>
+          {[...new Array(20)].map((_, imgIndex) => {
+            const imageIndex = start + imgIndex;
+            return (
+              <img
+                class='img-poster'
+                src={baseUrl(`/frames/f${imageIndex + 1}.avif`)}
+                alt={`Image ${imageIndex}`}
+              />
+            );
+          })}
+        </section>
+      );
+    })
+  }
+</section>
+
+<script>
+  import { $$ } from '@/utils/functions';
+  import gsap from 'gsap';
+  const rows = $$('.row');
+  rows.forEach((row, rowIdx) => {
+    const images = row.querySelectorAll('.img-poster');
+    const isEven = rowIdx % 2 === 0;
+    const movementY = isEven ? `+=300vmax` : `-=300vmax`;
+
+    images.forEach((image, a) => {
+      gsap.set(image, {
+        x: _ => `${a * 30}vmax`
+      });
+
+      gsap.to(image, {
+        repeat: -1,
+        duration: 35,
+        ease: 'power2',
+        x: movementY,
+        modifiers: {
+          x: x => {
+            return `${parseFloat(x) % 300}vmax`;
+          }
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  section {
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #4a7d70;
+    background-image: linear-gradient(
+      90deg,
+      #440154,
+      #482475,
+      #414487,
+      #355f8d,
+      #2a788e,
+      #21908d,
+      #22a884,
+      #42be71,
+      #7ad151,
+      #bddf26,
+      #bddf26
+    );
+  }
+
+  .row {
+    width: 100%;
+    height: 33.3%;
+    position: relative;
+
+    .img-poster {
+      width: 30vmax;
+      position: absolute;
+      height: 100%;
+      object-fit: cover;
+      left: -40vmax;
+      object-position: center;
+    }
+  }
+</style>
